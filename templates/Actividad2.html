@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{%block content%}
+<br>
+<div class="card" style="width: 20rem;">
+    <div class="card-header">
+        Agregar al Diccionario
+    </div>
+    <div class="card-body">
+        <div class="col-sm-6" style="border-bottom: 2px solid black;">
+            {%from "_macros.html" import render_field%}
+
+            <form action="/diccionario" method="post" novalidate {{csrf_token}}>
+
+                <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                {{render_field(form.ingles)}}
+                {{render_field(form.espaniol)}}
+                <br>
+                <input class="btn btn-danger" type="submit" value="Guardar">
+                <br>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<div class="card" style="width: 20rem;">
+    <div class="card-header">
+        Buscar Palabra
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="col-xs-6" style="display: inline-block;  width: 50%; margin: 10px; padding: 10px;">
+                <form action="/palabra2" method="post" novalidate {{csrf_token}}>
+                    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+                    <label for="idioma">Español</label>
+                    <input type="radio" name="idioma" value="espaniol" checked>
+                    <br>
+                    <label for="idioma">Ingles</label>
+                    <input type="radio" name="idioma" value="ingles">
+                    <br>
+                    <br>
+                    {{render_field(form.palabra)}}
+                    <br>
+                </form>
+            </div>
+            <div class="col-xs-6" style="display: inline-block; margin: 10px; padding: 10px;">
+                <h3>Palabra: {{palabra}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

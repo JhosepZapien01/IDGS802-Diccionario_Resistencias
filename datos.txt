@@ -1,0 +1,6 @@
+red:rojo
+dog:perro
+cat:gato
+eat:comer
+water:agua
+watermelon:sandia
